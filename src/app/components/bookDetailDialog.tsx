@@ -1,6 +1,12 @@
-import { Dialog, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import Image from "next/image";
+import {
+    Dialog,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    IconButton,
+} from "@mui/material";
+import { FallbackImage } from "./fallbackImage";
 
 interface BookDetailsDialogProps {
     open: boolean;
@@ -9,7 +15,12 @@ interface BookDetailsDialogProps {
     fallbackImageSrc: string;
 }
 
-export default function BookDetailsDialog({ open, book, onClose, fallbackImageSrc }: BookDetailsDialogProps) {
+export default function BookDetailsDialog({
+    open,
+    book,
+    onClose,
+    fallbackImageSrc,
+}: BookDetailsDialogProps) {
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
             <DialogTitle>
@@ -28,22 +39,23 @@ export default function BookDetailsDialog({ open, book, onClose, fallbackImageSr
                 </IconButton>
             </DialogTitle>
             <DialogContent>
-                <Image
-                    src={book?.image ?? fallbackImageSrc}
-                    alt={book?.name ?? "Book Image"}
-                    width={500}
-                    height={500}
+                <FallbackImage
+                    src={book?.image ?? fallbackImageSrc} // Ensure a valid src
+                    alt={book?.name ?? "No image available"} // Provide a fallback alt text
+                    fallbackImage={fallbackImageSrc} // Fallback image source
                     className="rounded-md h-100 w-full object-contain bg-gray-200 py-4"
                     loading="lazy"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                        (e.target as HTMLImageElement).id = fallbackImageSrc;
-                        (e.target as HTMLImageElement).srcset = fallbackImageSrc;
-                    }}
                 />
-                <DialogContentText sx={{ marginTop: 2 }} className="text-sm text-gray-700">
+                <DialogContentText
+                    sx={{ marginTop: 2 }}
+                    className="text-sm text-gray-700"
+                >
                     <strong>Author:</strong> {book?.author}
                 </DialogContentText>
-                <DialogContentText sx={{ marginTop: 2 }} className="text-sm text-gray-700">
+                <DialogContentText
+                    sx={{ marginTop: 2 }}
+                    className="text-sm text-gray-700"
+                >
                     <strong>Description:</strong> {book?.description}
                 </DialogContentText>
             </DialogContent>
