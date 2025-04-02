@@ -40,9 +40,9 @@ export default function BookDetailsDialog({
             </DialogTitle>
             <DialogContent>
                 <FallbackImage
-                    src={book?.image ?? fallbackImageSrc} // Ensure a valid src
-                    alt={book?.name ?? "No image available"} // Provide a fallback alt text
-                    fallbackImage={fallbackImageSrc} // Fallback image source
+                    src={book?.image ?? fallbackImageSrc} 
+                    alt={book?.name ?? "No image available"}
+                    fallbackImage={fallbackImageSrc} 
                     className="rounded-md h-100 w-full object-contain bg-gray-200 py-4"
                     loading="lazy"
                 />

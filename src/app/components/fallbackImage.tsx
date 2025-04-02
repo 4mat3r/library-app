@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import Image, { ImageProps } from "next/image";
+import { useEffect, useState } from "react";
 
 export const FallbackImage = ({
     src,

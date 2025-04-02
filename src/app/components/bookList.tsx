@@ -31,10 +31,12 @@ export default function BookList({ books }: { books: IBook[] }) {
         const { value } = e.target;
         setSearchTerm(value);
     };
+
     const handleBookClick = (book: IBook) => {
         setSelectedBook(book);
         setIsModalOpen(true);
     };
+
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -51,13 +53,14 @@ export default function BookList({ books }: { books: IBook[] }) {
                 <Box sx={{ padding: 2 }} className="bg-zinc-50 shadow-sm">
                     <TextField
                         label="Search"
+                        type="search"
                         variant="outlined"
                         value={searchTerm}
                         onChange={handleSearchChange}
                         slotProps={{
                             input: {
-                                endAdornment: (
-                                    <IconButton>
+                                startAdornment: (
+                                    <IconButton disabled>
                                         <SearchIcon />
                                     </IconButton>
                                 ),
@@ -65,6 +68,7 @@ export default function BookList({ books }: { books: IBook[] }) {
                         }}
                         fullWidth
                         className="bg-white rounded-md shadow-sm"
+                        autoComplete="off"
                     />
                 </Box>
                 <Box className="grid grid-rows-[repeat(auto-fill,_minmax(320px,_1fr))] grid-cols-[repeat(auto-fit,_minmax(260px,_1fr))] xl:grid-cols-[repeat(auto-fill,_minmax(360px,_1fr))] gap-4 p-8 overflow-y-auto items-center justify-items-center md:justify-items-start h-[calc(100%-90px)]">
@@ -86,16 +90,16 @@ export default function BookList({ books }: { books: IBook[] }) {
                                 sx={{
                                     position: "relative",
                                     width: "100%",
-                                    height: "200px", // Adjust height as needed
+                                    height: "200px",
                                     borderRadius: "12px",
                                     overflow: "hidden",
-                                    backgroundColor: "#f0f0f0", // Fallback background color
+                                    backgroundColor: "#f0f0f0",
                                 }}
                             >
                                 <FallbackImage
-                                    src={book.image || noImage.src} // Ensure a valid src
-                                    alt={book.name || "No image available"} // Provide a fallback alt text
-                                    fallbackImage={noImage.src} // Fallback image source
+                                    src={book.image ?? noImage.src}
+                                    alt={book.name ?? "No image available"}
+                                    fallbackImage={noImage.src}
                                     className="rounded-md object-contain w-full h-full"
                                     loading="lazy"
                                 />

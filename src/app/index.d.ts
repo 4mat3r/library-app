@@ -1,4 +1,4 @@
-interface IBook  {
+interface IBook {
     id: string;
     name: string;
     author?: string;
