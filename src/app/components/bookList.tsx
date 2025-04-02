@@ -84,6 +84,11 @@ export default function BookList({ books }: { books: IBook[] }) {
                                 width: "100%",
                                 borderRadius: "12px",
                                 padding: 1.5,
+                                "&:hover": {
+                                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
+                                    transform: "scale(1.02)",
+                                    transition: "transform 0.2s ease-in-out",
+                                },
                             }}
                         >
                             <Box
